@@ -1,0 +1,5 @@
+opencv-contrib-python>=4.8.0
+caer>=2.0.0
+numpy>=1.22.0
+matplotlib>=3.5.0
+imutils>=0.5.4
