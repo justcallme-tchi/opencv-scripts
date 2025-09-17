@@ -32,6 +32,5 @@ python rescale_display.py
 ## File Structure
 - `draw.py` - Demonstrates drawing shapes and text on images
 - `rescale_display.py` - Shows how to resize images and videos
-- `Edge_detection.py` - Demonstrates edge detection techniques
 - `face_test.py` - Face detection sample
 - Images and videos are stored in their respective folders
