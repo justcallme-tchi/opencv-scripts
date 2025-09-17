@@ -7,7 +7,6 @@ This repository contains Python scripts demonstrating various OpenCV functionali
 - Drawing shapes and text
 - Image rescaling
 - Video capture and processing
-- Edge detection and more
 
 ## Setup and Installation
 
