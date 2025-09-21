@@ -52,8 +52,19 @@ def rotate(img, angle, rotPoint=None):
     rotMat = cv.getRotationMatrix2D(rotPoint, angle, 1.0)
     return cv.warpAffine(img, rotMat, (w, h))
 
-rotated = rotate(rescaled_img, 45)
-cv.imshow('Rotated (45 degrees)', rotated)
+rotated = rotate(rescaled_img, -45)
+cv.imshow('Rotated (-45 degrees)', rotated)
+
+rotated_rotated = rotate(rotated, -90)
+cv.imshow('Rotated Rotated (-90 degrees)', rotated_rotated)
+
+#Resizing
+resized = cv.resize(Image, (500, 500), interpolation=cv.INTER_CUBIC)
+cv.imshow('Resized (500x500)', resized)
+
+# Flipping
+flip = cv.flip(rescaled_img, 1) # 0 -> vertical , 1 -> horizontal , -1 -> both axis
+cv.imshow('Flipped (horizontal)', flip)     
 
 # Wait for a key press (0 means wait indefinitely)
 cv.waitKey(0)
