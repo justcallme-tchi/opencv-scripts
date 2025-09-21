@@ -9,10 +9,10 @@ if Image is None:
     exit()
 
 # Rescale function to resize images
-def rescaleFrame(frame, scale=0.2):
+def rescaleFrame(frame, scale=0.15):
     """
     Rescales an image by a given scale factor.
-    Default scale is 0.2 (20% of original size) for much smaller display
+    Default scale is 0.15 (15% of original size) for much smaller display
     """
     width = int(frame.shape[1] * scale)   # New width
     height = int(frame.shape[0] * scale)  # New height
@@ -34,13 +34,13 @@ def translate(Image, x, y):
 # Apply translation
 translated = translate(Image, 100, 100)
 
-# Rescale images to 20% of original size for much smaller display
-rescaled_img = rescaleFrame(Image, scale=0.2)  
-rescaled_translated = rescaleFrame(translated, scale=0.2)
+# Rescale images to 15% of original size for much smaller display
+rescaled_img = rescaleFrame(Image, scale=0.15)  
+rescaled_translated = rescaleFrame(translated, scale=0.15)
 
-# Display original and translated images (both rescaled to 20%)
-cv.imshow('Original (20% size)', rescaled_img)
-cv.imshow('Translated (20% size)', rescaled_translated)
+# Display original and translated images (both rescaled to 15%)
+cv.imshow('Original (15% size)', rescaled_img)
+cv.imshow('Translated (15% size)', rescaled_translated)
 
 # Wait for a key press (0 means wait indefinitely)
 cv.waitKey(0)
