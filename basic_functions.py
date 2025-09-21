@@ -33,7 +33,9 @@ print(f"Image saved to Output/Cat_gray.jpg") """
 blur = cv.GaussianBlur(img, (7,7), cv.BORDER_DEFAULT)
 cv.imshow('Blurred', blur)
 
-
+#Edge Cascade
+edges = cv.Canny(blur, 100, 200)
+cv.imshow('Edges', edges)
 
 cv.waitKey(0)
 cv.destroyAllWindows()
