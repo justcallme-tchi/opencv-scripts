@@ -42,6 +42,19 @@ rescaled_translated = rescaleFrame(translated, scale=0.15)
 cv.imshow('Original (15% size)', rescaled_img)
 cv.imshow('Translated (15% size)', rescaled_translated)
 
+#Rotation
+def rotate(img, angle, rotPoint=None):
+    (h, w) = img.shape[:2]
+    if rotPoint is None:
+        rotPoint = (w // 2, h // 2)
+
+    # Perform the rotation
+    rotMat = cv.getRotationMatrix2D(rotPoint, angle, 1.0)
+    return cv.warpAffine(img, rotMat, (w, h))
+
+rotated = rotate(rescaled_img, 45)
+cv.imshow('Rotated (45 degrees)', rotated)
+
 # Wait for a key press (0 means wait indefinitely)
 cv.waitKey(0)
 
