@@ -34,8 +34,24 @@ blur = cv.GaussianBlur(img, (7,7), cv.BORDER_DEFAULT)
 cv.imshow('Blurred', blur)
 
 #Edge Cascade
-edges = cv.Canny(blur, 100, 200)
+edges = cv.Canny(img, 125, 175) #reduce the number of found edges with passing the blured img instead
 cv.imshow('Edges', edges)
+
+#Dilating the image
+dilated = cv.dilate(edges, (7,7), iterations=3)
+cv.imshow('Dilated', dilated)
+
+#Eroding the image
+eroded = cv.erode(dilated, (7,7), iterations=3)
+cv.imshow('Eroded', eroded)
+
+#Resizeing the image
+resized = cv.resize(img, (500,500), interpolation=cv.INTER_CUBIC)
+cv.imshow('Resized', resized)
+
+#Cropping the image
+cropped = img[50:200, 200:400] #consider img as a 2D array
+cv.imshow('Cropped', cropped)
 
 cv.waitKey(0)
 cv.destroyAllWindows()
