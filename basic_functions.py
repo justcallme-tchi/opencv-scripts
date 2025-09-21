@@ -1,11 +1,17 @@
-# Converting image to grayscale
 import cv2 as cv
 
-# Show original image
+# ------------------------------------------------
+# Load and show the original image
+# ------------------------------------------------
 img = cv.imread('images/Cat.jpg')
-cv.imshow('Cat', img)
+cv.imshow('Original Cat', img)
 
-""" def convert_to_grayscale(image_path):
+# ------------------------------------------------
+# Example function for grayscale conversion (optional)
+# Uncomment if you want a reusable function
+# ------------------------------------------------
+"""
+def convert_to_grayscale(image_path):
     # Read the image
     image = cv.imread(image_path)
     
@@ -14,7 +20,7 @@ cv.imshow('Cat', img)
         print(f"Error: Could not load image from {image_path}")
         return None
     
-    # Convert to grayscale
+    # Convert from BGR (default OpenCV format) to grayscale
     gray_image = cv.cvtColor(image, cv.COLOR_BGR2GRAY)
     
     return gray_image
@@ -25,33 +31,63 @@ gray_image = convert_to_grayscale('images/Cat.jpg')
 # Display the grayscale image
 cv.imshow("Grayscale Image", gray_image)
 
-# Save the grayscale image  
+# Save the grayscale image to a folder called Output/
 cv.imwrite("Output/Cat_gray.jpg", gray_image)
-print(f"Image saved to Output/Cat_gray.jpg") """
+print(f"Image saved to Output/Cat_gray.jpg")
+"""
 
-#Blur image 
-blur = cv.GaussianBlur(img, (7,7), cv.BORDER_DEFAULT)
+# ------------------------------------------------
+# Blur the image
+# ------------------------------------------------
+# cv.GaussianBlur(src, ksize, sigmaX, borderType)
+# ksize = kernel size (must be odd numbers, e.g. (7,7))
+blur = cv.GaussianBlur(img, (7, 7), cv.BORDER_DEFAULT)
 cv.imshow('Blurred', blur)
 
-#Edge Cascade
-edges = cv.Canny(img, 125, 175) #reduce the number of found edges with passing the blured img instead
+# ------------------------------------------------
+# Edge detection (Canny algorithm)
+# ------------------------------------------------
+# cv.Canny(image, threshold1, threshold2)
+# Lower threshold = edges considered; higher threshold = edges kept
+edges = cv.Canny(img, 125, 175)
+# Better result: use blurred image to reduce noise
+# edges = cv.Canny(blur, 125, 175)
 cv.imshow('Edges', edges)
 
-#Dilating the image
-dilated = cv.dilate(edges, (7,7), iterations=3)
+# ------------------------------------------------
+# Dilate the edges (make lines thicker)
+# ------------------------------------------------
+# cv.dilate(src, kernel, iterations)
+# kernel can be a tuple (e.g. (7,7)), iterations = how many times dilation is applied
+dilated = cv.dilate(edges, (7, 7), iterations=3)
 cv.imshow('Dilated', dilated)
 
-#Eroding the image
-eroded = cv.erode(dilated, (7,7), iterations=3)
+# ------------------------------------------------
+# Erode the dilated edges (make lines thinner)
+# ------------------------------------------------
+# cv.erode(src, kernel, iterations)
+eroded = cv.erode(dilated, (7, 7), iterations=3)
 cv.imshow('Eroded', eroded)
 
-#Resizeing the image
-resized = cv.resize(img, (500,500), interpolation=cv.INTER_CUBIC)
+# ------------------------------------------------
+# Resize the image
+# ------------------------------------------------
+# cv.resize(src, dsize, interpolation)
+# interpolation:
+# - INTER_AREA → shrinking
+# - INTER_LINEAR / INTER_CUBIC → enlarging
+resized = cv.resize(img, (500, 500), interpolation=cv.INTER_CUBIC)
 cv.imshow('Resized', resized)
 
-#Cropping the image
-cropped = img[50:200, 200:400] #consider img as a 2D array
+# ------------------------------------------------
+# Crop the image
+# ------------------------------------------------
+# Images are arrays → img[y1:y2, x1:x2]
+cropped = img[50:200, 200:400]  # height from 50→200, width from 200→400
 cv.imshow('Cropped', cropped)
 
+# ------------------------------------------------
+# Wait for key press and close all windows
+# ------------------------------------------------
 cv.waitKey(0)
 cv.destroyAllWindows()
