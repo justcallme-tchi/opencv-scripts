@@ -73,9 +73,6 @@ cropped = Image[200:400, 300:400]
 cv.imshow('Cropped', rescaleFrame(cropped))
 cv.imwrite("Output/elder-man_cropped.jpg", cropped)
 
-# Also save original for reference
-cv.imwrite("Output/elder-man_original.jpg", Image)
-
 # ------------------------------------------------
 # Exit
 # ------------------------------------------------
