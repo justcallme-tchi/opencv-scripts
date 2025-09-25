@@ -171,4 +171,4 @@ Feel free to add more examples, improve documentation, or suggest enhancements. 
 
 ---
 
-**Happy Learning!** 🎉 Start with any script that interests you and experiment with different parameters to see how they affect the results.
+**Happy Learning!** 🎉 Start with any script that interests you and experiment with different parameters to see how they affect the results
